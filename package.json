@@ -26,6 +26,6 @@
     "standard": "^10.0.3"
   },
   "dependencies": {
-    "@abetomo/vsq": "^0.1.0"
+    "@abetomo/vsq": "^0.1.1"
   }
 }
