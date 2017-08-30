@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/abetomo/Simply-imitated-SQS-for-testing/issues"
   },
-  "homepage": "https://github.com/abetomo/Simply-imitated-SQS-for-testing#readme"
+  "homepage": "https://github.com/abetomo/Simply-imitated-SQS-for-testing#readme",
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "standard": "^10.0.3"
+  }
 }
