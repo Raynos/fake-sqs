@@ -19,5 +19,8 @@
   "devDependencies": {
     "jest": "^20.0.4",
     "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "@abetomo/vsq": "^0.1.0"
   }
 }
