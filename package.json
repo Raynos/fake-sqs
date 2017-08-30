@@ -1,0 +1,31 @@
+{
+  "name": "@abetomo/simply-imitated-sqs",
+  "version": "0.0.1",
+  "description": "Simply imitated SQS for testing",
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abetomo/Simply-imitated-SQS-for-testing.git"
+  },
+  "keywords": [
+    "sqs",
+    "test",
+    "mock"
+  ],
+  "author": "abetomo",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/abetomo/Simply-imitated-SQS-for-testing/issues"
+  },
+  "homepage": "https://github.com/abetomo/Simply-imitated-SQS-for-testing#readme",
+  "devDependencies": {
+    "jest": "^20.0.4",
+    "standard": "^10.0.3"
+  },
+  "dependencies": {
+    "@abetomo/vsq": "^0.1.0"
+  }
+}
