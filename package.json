@@ -10,6 +10,11 @@
     "type": "git",
     "url": "git+https://github.com/abetomo/Simply-imitated-SQS-for-testing.git"
   },
+  "keywords": [
+    "sqs",
+    "test",
+    "mock"
+  ],
   "author": "abetomo",
   "license": "GPL-3.0",
   "bugs": {
