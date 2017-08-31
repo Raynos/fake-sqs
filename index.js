@@ -1,2 +1,2 @@
 'use srict'
-module.exports = require(__dirname + '/lib/simply_imitated_sqs')
+module.exports = require('./lib/simply_imitated_sqs')
