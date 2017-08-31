@@ -4,6 +4,11 @@ Simply imitated SQS for testing
 Simple SQS class that can be used for local test.
 You do not even need to use Docker.
 
+## install
+```
+% npm install @abetomo/simply-imitated-sqs
+```
+
 ## Application example
 ```javascript
 'use strict'
