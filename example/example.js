@@ -1,11 +1,3 @@
-# Simply-imitated-SQS-for-testing
-Simply imitated SQS for testing
-
-Simple SQS class that can be used for local test.
-You do not even need to use Docker.
-
-## Application example
-```javascript
 'use strict'
 
 const AWS = require('aws-sdk')
@@ -63,12 +55,77 @@ Promise.resolve().then(() => {
     sqs.clear()
   }
 })
-```
 
-```
+/*
 # Access AWS.
 % node example.js
++++
+{
+ "ResponseMetadata": {
+  "RequestId": "aaa"
+ },
+ "MD5OfMessageBody": "8a1d909a4370c22b8302a4f2748089e7",
+ "MessageId": "bbb"
+}
++++
+===
+{
+ "ResponseMetadata": {
+  "RequestId": "ccc"
+ },
+ "Messages": [
+  {
+   "MessageId": "ddd",
+   "ReceiptHandle": "eee",
+   "MD5OfBody": "35f5187169af6201c56bb7a9494102ff",
+   "Body": "hogeThu Aug 31 2017 13:49:10 GMT+0900 (JST)"
+  }
+ ]
+}
+===
+---
+{
+ "ResponseMetadata": {
+  "RequestId": "fff"
+ }
+}
+---
+*/
 
+/***********************************************************************************/
+
+/*
 # Local Completion Test
 % LOCAL_TEST=1 node example.js
-```
++++
+{
+ "ResponseMetadata": {
+  "RequestId": "SimplyImitatedSQS-RequestId"
+ },
+ "MD5OfMessageBody": "ae4a2d14fb4fa108b2322af5dc0c1dde",
+ "MessageId": "SimplyImitatedSQS-MessageId"
+}
++++
+===
+{
+ "ResponseMetadata": {
+  "RequestId": "SimplyImitatedSQS-RequestId"
+ },
+ "Messages": [
+  {
+   "MessageId": "SimplyImitatedSQS-MessageId",
+   "ReceiptHandle": "150415524-c223feda-afe1-4053-bb44-b673b89ddabd",
+   "MD5OfBody": "ae4a2d14fb4fa108b2322af5dc0c1dde",
+   "Body": "hogeThu Aug 31 2017 13:54:00 GMT+0900 (JST)"
+  }
+ ]
+}
+===
+---
+{
+ "ResponseMetadata": {
+  "RequestId": "SimplyImitatedSQS-RequestId"
+ }
+}
+---
+*/
