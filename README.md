@@ -1,4 +1,7 @@
 # Simply-imitated-SQS-for-testing
+
+[![npm version](https://badge.fury.io/js/%40abetomo%2Fsimply-imitated-sqs.svg)](https://badge.fury.io/js/%40abetomo%2Fsimply-imitated-sqs)
+
 Simply imitated SQS for testing
 
 Simple SQS class that can be used for local test.
