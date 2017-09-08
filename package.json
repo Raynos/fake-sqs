@@ -4,7 +4,9 @@
   "description": "Simply imitated SQS for testing",
   "main": "index.js",
   "scripts": {
-    "test": "standard && jest"
+    "lint": "standard",
+    "test": "npm run lint && npm run unit",
+    "unit": "jest"
   },
   "repository": {
     "type": "git",
