@@ -26,7 +26,7 @@
     "standard": "^10.0.3"
   },
   "dependencies": {
-    "@abetomo/vsq": "^0.1.1"
+    "@abetomo/vsq": "^0.1.2"
   },
   "publishConfig": {
     "access": "public"
