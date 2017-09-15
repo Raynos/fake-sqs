@@ -2,4 +2,4 @@
 
 'use strict'
 const server = new (require('..').Server)()
-server.run()
+server.run({logging: true})

@@ -16,7 +16,10 @@ const server = new (require('@abetomo/simply-imitated-sqs').Server)()
 var queueUrl = 'https://sqs.us-east-1.amazonaws.com/xxx/test'
 if (process.env.LOCAL_TEST === '1') {
   /// !!! Server start and `queueUrl` reassignment
-  queueUrl = server.run()
+  queueUrl = server.run({
+    port: '1234',
+    host: 'localhost'
+  })
 }
 
 Promise.resolve().then(() => {
