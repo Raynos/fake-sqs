@@ -6,6 +6,9 @@
   "scripts": {
     "test": "standard && jest"
   },
+  "bin": {
+    "sis-local-sqs-start": "./bin/webserver.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abetomo/Simply-imitated-SQS-for-testing.git"

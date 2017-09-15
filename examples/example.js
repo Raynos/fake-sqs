@@ -1,8 +1,12 @@
 'use strict'
 
+// !!!
+// If the value of the environment variable LOCAL_TEST is set,
+// it will be tested with SimplyImitatedSQS
+
 const AWS = require('aws-sdk')
 const sqs = (() => {
-  // If environment variable is set, use SimplyImitatedSQS
+  // !!! If environment variable is set, use SimplyImitatedSQS
   if (process.env.LOCAL_TEST === '1') {
     const SimplyImitatedSQS = require('@abetomo/simply-imitated-sqs')
     return new SimplyImitatedSQS()
@@ -51,7 +55,7 @@ Promise.resolve().then(() => {
   })
 }).then(() => {
   if (process.env.LOCAL_TEST === '1') {
-    // SimplyImitatedSQS creates a file to store the queue, so remove it.
+    // !!! SimplyImitatedSQS creates a file to store the queue, so remove it.
     sqs.clear()
   }
 })
