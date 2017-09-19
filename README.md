@@ -1,6 +1,8 @@
 # Simply-imitated-SQS-for-testing
 
 [![npm version](https://badge.fury.io/js/%40abetomo%2Fsimply-imitated-sqs.svg)](https://badge.fury.io/js/%40abetomo%2Fsimply-imitated-sqs)
+[![Build Status](https://travis-ci.org/abetomo/Simply-imitated-SQS-for-testing.svg?branch=master)](https://travis-ci.org/abetomo/Simply-imitated-SQS-for-testing)
+[![Build status](https://ci.appveyor.com/api/projects/status/lytdokg17id0n33l/branch/master?svg=true)](https://ci.appveyor.com/project/abetomo/simply-imitated-sqs-for-testing/branch/master)
 
 Simply imitated SQS for testing
 
