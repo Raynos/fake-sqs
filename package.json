@@ -33,6 +33,15 @@
   "dependencies": {
     "@abetomo/vsq": "^0.1.2"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "bin",
+    "examples",
+    "index.js",
+    "lib",
+    "package.json"
+  ],
   "publishConfig": {
     "access": "public"
   }
