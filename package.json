@@ -1,6 +1,6 @@
 {
   "name": "@abetomo/simply-imitated-sqs",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Simply imitated SQS for testing",
   "main": "index.js",
   "scripts": {
