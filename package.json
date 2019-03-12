@@ -1,6 +1,6 @@
 {
   "name": "fake-sqs",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Simply imitated SQS for testing",
   "main": "index.js",
   "scripts": {
