@@ -1,6 +1,6 @@
 {
   "name": "fake-sqs",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Run a fake SQS HTTP server for testing purposes",
   "main": "index.js",
   "scripts": {
