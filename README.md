@@ -68,7 +68,7 @@ like aws SQS objects.
 
 ### `server.waitForMessages(count, listener)`
 
-Get notified once N messages have been send to this fake SQS.
+Get notified once N messages have in total been sent to this fake SQS.
 
 `listener` is called once.
 
