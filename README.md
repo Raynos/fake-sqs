@@ -59,15 +59,18 @@ Create a fake SQS server
  - `opts.port` ; defaults to 0
  - `opts.host` ; defaults to `localhost`
 
-Starts the server. cb get's called once listening on a port.
+Starts the server. `cb` get's called once listening on a port.
 
 ### `server.getQueue()`
 
-Returns the current array of items queued in SQS
+Returns the current array of items queued in SQS. These are shaped
+like aws SQS objects.
 
 ### `server.waitForMessages(count, listener)`
 
-Get notified once N messages have been send to this fake SQS
+Get notified once N messages have been send to this fake SQS.
+
+`listener` is called once.
 
 ### `server.waitForFlush(listener)`
 
@@ -77,6 +80,8 @@ queue is zero.
 This can be used with `waitForMessages()` to first wait for N
 messages to be send and then wait for them to have been received
 and deleted from the queue.
+
+`listener` is called once.
 
 ### `server.close(cb)`
 
