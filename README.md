@@ -47,3 +47,37 @@ myServer.run({
   })
 })
 ```
+
+## Docs :
+
+### `const server = new SQSServer()`
+
+Create a fake SQS server
+
+### `server.run(opts, cb)`
+
+ - `opts.port` ; defaults to 0
+ - `opts.host` ; defaults to `localhost`
+
+Starts the server. cb get's called once listening on a port.
+
+### `server.getQueue()`
+
+Returns the current array of items queued in SQS
+
+### `server.waitForMessages(count, listener)`
+
+Get notified once N messages have been send to this fake SQS
+
+### `server.waitForFlush(listener)`
+
+Get notified when the number of pending messages in the SQS
+queue is zero.
+
+This can be used with `waitForMessages()` to first wait for N
+messages to be send and then wait for them to have been received
+and deleted from the queue.
+
+### `server.close(cb)`
+
+Closes the underlying http server.
