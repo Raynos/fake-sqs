@@ -1,6 +1,6 @@
 {
   "name": "fake-sqs",
-  "version": "5.0.2",
+  "version": "5.0.3",
   "description": "Run a fake SQS HTTP server for testing purposes",
   "keywords": [],
   "author": "Raynos <raynos2@gmail.com>",
