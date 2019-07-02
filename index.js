@@ -116,7 +116,7 @@ class FakeSQSServer {
       messageW.done()
     }
 
-    if (this.pendingCount === 0) {
+    if (this.pendingCount === 0 && this.flushWaiter) {
       const flushW = this.flushWaiter
       this.flushWaiter = null
       flushW.done()
