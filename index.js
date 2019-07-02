@@ -43,9 +43,14 @@ class FakeSQSServer {
   }
 
   async close () {
+    if (this.server === null) {
+      return
+    }
+
     await util.promisify((cb) => {
       this.server.close(cb)
     })()
+    this.server = null
   }
 
   async waitForMessages (count) {

@@ -117,3 +117,9 @@ test('deleting a msg', async (server, assert) => {
     })
   }
 })
+
+test('double close', async (server, assert) => {
+  await server.close()
+  await server.close()
+  assert.ok(true)
+})
