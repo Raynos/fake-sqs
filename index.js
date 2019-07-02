@@ -10,8 +10,7 @@ const WaitGroup = require('./sync-wait-group.js')
 const RID = 'FakeSQS-RequestId'
 
 // TODO: add support for multiple queues
-// TODO: add support for visibility timeout
-// TODO: add support for returning N items from queue
+// TODO: add support for wait time seconds
 class FakeSQSServer {
   constructor (options = {}) {
     this.server = http.createServer()
@@ -92,7 +91,11 @@ class FakeSQSServer {
   }
 
   getQueue () {
-    return this.queue.slice()
+    const copy = []
+    for (const o of this.queue) {
+      copy.push(o.value)
+    }
+    return copy
   }
 
   _checkWaiters () {
@@ -162,7 +165,7 @@ class FakeSQSServer {
       }
     }
 
-    this.pendingItems = this.queue.length
+    this.pendingCount = this.queue.length
     this._checkWaiters()
     return `<DeleteMessageResponse>
       <ResponseMetadata>
@@ -176,9 +179,7 @@ class FakeSQSServer {
 
     return `<SendMessageResponse>
       <SendMessageResult>
-        <MD5OfMessageBody>
-          ${md5(params.MessageBody)}
-        </MD5OfMessageBody>
+        <MD5OfMessageBody>${md5(params.MessageBody)}</MD5OfMessageBody>
         <MessageId>FakeSQS-MessageId</MessageId>
       </SendMessageResult>
       <ResponseMetadata>
@@ -222,6 +223,19 @@ class FakeSQSServer {
     </SendMessageBatchResponse>`
   }
 
+  _scanForItem (now) {
+    for (let i = 0; i < this.queue.length; i++) {
+      const item = this.queue[i]
+      if (now <= item.visibilityTimeout) {
+        continue
+      }
+
+      return item
+    }
+
+    return null
+  }
+
   _handleReceive (params) {
     if (this.queue.length === 0) {
       return `<ReceiveMessageResponse>
@@ -233,35 +247,45 @@ class FakeSQSServer {
       </ReceiveMessageResponse>`
     }
 
-    const item = this.queue[0]
-
     let xml = `<ReceiveMessageResponse>
-      <ReceiveMessageResult>
-        <Message>
-          <MessageId>${RID}</MessageId>
-          <ReceiptHandle>${item.id}</ReceiptHandle>
-          <MD5OfBody>${md5(item.value.MessageBody)}</MD5OfBody>
-          <Body>${item.value.MessageBody}</Body>\n`
+      <ReceiveMessageResult>`
 
-    for (let i = 1; i <= 10; i++) {
-      const key = `MessageAttribute.${i}.Name`
-      if (!item.body[key]) {
-        continue
+    const maxItems = params.MaxNumberOfMessages
+    const now = Date.now()
+    for (let i = 0; i < maxItems; i++) {
+      const item = this._scanForItem(now)
+      if (item === null) {
+        break
+      }
+      item.visibilityTimeout =
+        Date.now() + (params.VisibilityTimeout * 1000)
+
+      xml += `<Message>
+        <MessageId>${RID}</MessageId>
+        <ReceiptHandle>${item.id}</ReceiptHandle>
+        <MD5OfBody>${md5(item.value.MessageBody)}</MD5OfBody>
+        <Body>${item.value.MessageBody}</Body>\n`
+
+      for (let i = 1; i <= 10; i++) {
+        const key = `MessageAttribute.${i}.Name`
+        if (!item.value[key]) {
+          continue
+        }
+
+        const valKey = `MessageAttribute.${i}.Value.StringValue`
+        xml += `<MessageAttribute>
+          <Name>${item.value[key]}</Name>
+          <Value>
+            <StringValue>${item.value[valKey]}</StringValue>
+            <DataType>String</DataType>
+          </Value>
+        </MessageAttribute>\n`
       }
 
-      const valKey = `MessageAttribute.${i}.Value.StringValue`
-      xml += `<MessageAttribute>
-        <Name>${item.body[key]}</Name>
-        <Value>
-          <StringValue>${item.body[valKey]}</StringValue>
-          <DataType>String</DataType>
-        </Value>
-      </MessageAttribute>\n`
+      xml += `</Message>\n`
     }
 
-    xml += `
-        </Message>
-      </ReceiveMessageResult>
+    xml += `</ReceiveMessageResult>
       <ResponseMetadata>
         <RequestId>${RID}</RequestId>
       </ResponseMetadata>
@@ -273,7 +297,8 @@ class FakeSQSServer {
   _processSend (params) {
     this.queue.push({
       id: id(),
-      value: params
+      value: params,
+      visibilityTimeout: 0
     })
     this.sendCount++
     this.pendingCount = this.queue.length
