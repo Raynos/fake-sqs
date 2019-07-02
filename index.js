@@ -40,6 +40,7 @@ class FakeSQSServer {
     })()
 
     this.hostPort = `localhost:${this.server.address().port}`
+    return this.hostPort
   }
 
   async close () {
