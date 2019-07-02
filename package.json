@@ -1,0 +1,33 @@
+{
+  "name": "fake-sqs",
+  "version": "5.0.0",
+  "description": "Run a fake SQS HTTP server for testing purposes",
+  "keywords": [],
+  "author": "Raynos <raynos2@gmail.com>",
+  "repository": "git://github.com/Raynos/fake-sqs.git",
+  "main": "index.js",
+  "homepage": "https://github.com/Raynos/fake-sqs",
+  "bugs": {
+    "url": "https://github.com/Raynos/fake-sqs/issues",
+    "email": "raynos2@gmail.com"
+  },
+  "contributors": [
+    {
+      "name": "Raynos"
+    }
+  ],
+  "devDependencies": {
+    "standard": "12.0.1",
+    "tape": "4.11.0",
+    "tape-cluster": "3.2.1"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/Raynos/fake-sqs/raw/master/LICENSE"
+    }
+  ],
+  "scripts": {
+    "test": "standard && node test/index.js"
+  }
+}
